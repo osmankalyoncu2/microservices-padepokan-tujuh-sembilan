@@ -1,10 +1,10 @@
-package com.ms.portalgateway;
+package com.ms.idm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PortalgatewayApplicationTests {
+class IdmApplicationTests {
 
 	@Test
 	void contextLoads() {
