@@ -44,7 +44,9 @@ public class UserService {
     }
 
     public User getUserByIndentityNumber(String identityNumber) {
-        return new User();
+        Optional<User> user = userRepository.findUserByIdentityNumber(identityNumber);
+        System.out.println(user);
+        return user.get();
     }
 
     public String updateUser(User request) {

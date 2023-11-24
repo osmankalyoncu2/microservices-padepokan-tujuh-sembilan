@@ -24,12 +24,12 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
-    @GetMapping(value = "/{accountNumber}")
+    @GetMapping(value = "/getUserByAccountNumber/{accountNumber}")
     public ResponseEntity<?> getUserByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
         return ResponseEntity.ok().body(userService.getUserByAccountNumber(accountNumber));
     }
 
-    @GetMapping(value = "/{identityNumber}")
+    @GetMapping(value = "/getUserByIdenityNumber/{identityNumber}")
     public ResponseEntity<?> getUserByIdenityNumber(
             @PathVariable("identityNumber") String identityNumber
     ) {
