@@ -3,6 +3,8 @@ package com.ms.idm.service;
 import com.ms.idm.entity.User;
 import com.ms.idm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -16,19 +18,20 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser(User request) {
+    public ResponseEntity<?> createUser(User requestBody) {
+        try {
+            User user = new User();
+            user.setUserName(requestBody.getUserName());
+            user.setAccountNumber(requestBody.getAccountNumber());
+            user.setIdentityNumber(requestBody.getIdentityNumber());
+            user.setEmailAddress(requestBody.getEmailAddress());
 
-//        UUID uuid = UUID.randomUUID();
-        User newUser = new User();
-//        newUser.setId(uuid);
-        newUser.setUserName(request.getUserName());
-        newUser.setAccountNumber(request.getAccountNumber());
-        newUser.setEmailAddress(request.getEmailAddress());
-        newUser.setIdentityNumber(request.getIdentityNumber());
+            userRepository.save(user);
 
-        userRepository.save(newUser);
-
-        return newUser;
+            return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     public List<User> getUsers() {

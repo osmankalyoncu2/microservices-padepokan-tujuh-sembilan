@@ -4,7 +4,6 @@ import com.ms.idm.entity.User;
 import com.ms.idm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,8 +14,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createUser(@RequestBody User request) {
-        return ResponseEntity.ok().body(userService.createUser(request));
+    public ResponseEntity<?> createUser(@RequestBody User requestBody) {
+        return userService.createUser(requestBody);
     }
 
     @GetMapping
